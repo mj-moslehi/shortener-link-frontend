@@ -4,6 +4,7 @@ import SignUp from "./pages/signUp/SignUp.tsx";
 import Home from "./pages/home/Home.tsx";
 import PageContainer from "./components/PageContainer.tsx";
 import MyLinks from "./pages/myLinks/MyLinks.tsx";
+import Clicked from "./pages/clicked/Clicked.tsx";
 
 function App() {
     return (
@@ -18,6 +19,10 @@ function App() {
                 <Route path='/my-links' element={
                     <PageContainer>
                         <MyLinks/>
+                    </PageContainer>}/>
+                <Route path='/clicked' element={
+                    <PageContainer>
+                        <Clicked/>
                     </PageContainer>}/>
             </Routes>
         </>
