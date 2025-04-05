@@ -5,6 +5,7 @@ import Home from "./pages/home/Home.tsx";
 import PageContainer from "./components/PageContainer.tsx";
 import MyLinks from "./pages/myLinks/MyLinks.tsx";
 import Clicked from "./pages/clicked/Clicked.tsx";
+import CreateNewURL from "./pages/createNewURL/CreateNewURL.tsx";
 
 function App() {
     return (
@@ -23,6 +24,10 @@ function App() {
                 <Route path='/clicked' element={
                     <PageContainer>
                         <Clicked/>
+                    </PageContainer>}/>
+                <Route path='/create-new-url' element={
+                    <PageContainer>
+                        <CreateNewURL/>
                     </PageContainer>}/>
             </Routes>
         </>
