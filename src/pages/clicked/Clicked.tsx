@@ -1,4 +1,5 @@
 import LinkFields from "../../components/LinkFields.tsx";
+import ClickDetail from "../../components/ClickDetail.tsx";
 
 export default function Clicked() {
     return(
@@ -6,7 +7,9 @@ export default function Clicked() {
             <h1 className='text-3xl font-bold text-gray-500 my-8' >Chosen Link : </h1>
             <LinkFields/>
             <h1 className='text-3xl font-bold text-gray-500 my-8' >Clicks Details : </h1>
-
+            {[...Array(10)].map(() => (
+                <ClickDetail  />
+            ))}
         </div>
     )
 }
