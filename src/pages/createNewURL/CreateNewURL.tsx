@@ -30,7 +30,7 @@ export default function CreateNewURL() {
         <div className="flex items-center justify-center min-h-screen p-7 bg-gray-100">
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="w-full max-w-4xl bg-white shadow-lg rounded-2xl p-6 sm:p-8"
+                className="w-3xl bg-white shadow-lg rounded-2xl p-6 sm:p-8"
             >
                 <div className="text-2xl sm:text-3xl font-bold text-center mb-8">
                     Create Short Link
@@ -48,7 +48,7 @@ export default function CreateNewURL() {
                             className="w-full border border-gray-300 rounded-lg px-3 h-12"
                             type="url"
                         />
-                        <div className="min-h-[1.25rem] mt-1 text-sm text-red-600">
+                        <div className="min-h-[1.25rem] mt-1 text-sm text-red-600 ">
                             {errors.raw_link?.message ?? '\u00A0'}
                         </div>
                     </div>
