@@ -1,6 +1,6 @@
 import LinkView from "../../components/LinkView.tsx";
 
-const links: string[] = ['salama', 'sldkfjwel', 'lsdkfjww'];
+const links: string[] = ['salamdd', 'sldkfjwel', 'lsdkfjww'];
 export default function MyLinks() {
 
     return (

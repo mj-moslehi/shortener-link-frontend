@@ -4,7 +4,7 @@ interface LinkViewProps {
 
 export default function LinkView({link}: LinkViewProps) {
     return (
-        <div className='p-3 my-3 rounded-lg shadow-md bg-gray-200 '>
+        <div className='p-3 my-3 rounded-lg shadow-md bg-gray-200 max-w-lg min-w-sm overflow-x-hidden hover:overflow-x-visible'>
             <h1 className='text-2xl'>{link}</h1>
             <div className='flex items-center justify-between mt-4'>
                 <button className='flex justify-center items-center bg-green-400 text-black p-2 rounded-md hover:cursor-pointer hover:shadow-md font-medium hover:opacity-65' >Update</button>
