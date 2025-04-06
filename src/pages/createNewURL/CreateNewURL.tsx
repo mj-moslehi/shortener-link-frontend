@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { joiResolver } from "@hookform/resolvers/joi";
-import { useForm, FieldValues } from "react-hook-form";
+import {useState} from "react";
+import {joiResolver} from "@hookform/resolvers/joi";
+import {useForm, FieldValues} from "react-hook-form";
 import linkSchema from "./LinkValidator.tsx";
 import api from "../../services/domain.ts";
 
@@ -9,9 +9,9 @@ export default function CreateNewURL() {
     const {
         register,
         handleSubmit,
-        formState: { errors, isValid },
+        formState: {errors, isValid},
         watch,
-    } = useForm({ resolver: joiResolver(linkSchema), mode: "onChange" });
+    } = useForm({resolver: joiResolver(linkSchema), mode: "onChange"});
 
     const onSubmit = async (data: FieldValues) => {
         setError("");
@@ -27,7 +27,7 @@ export default function CreateNewURL() {
     const isPrivate = watch("private_status");
 
     return (
-        <div className="flex items-center justify-center min-h-screen p-7 bg-gray-100">
+        <div className="flex items-center min-h-screen">
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="w-3xl bg-white shadow-lg rounded-2xl p-6 sm:p-8"
@@ -39,7 +39,6 @@ export default function CreateNewURL() {
                 {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Raw Link */}
                     <div>
                         <label htmlFor="raw_link" className="block font-medium mb-1">Raw Link</label>
                         <input
@@ -53,7 +52,6 @@ export default function CreateNewURL() {
                         </div>
                     </div>
 
-                    {/* New Domain */}
                     <div>
                         <label htmlFor="new_domain" className="block font-medium mb-1">Custom Domain</label>
                         <input
@@ -67,7 +65,7 @@ export default function CreateNewURL() {
                         </div>
                     </div>
 
-                    {/* New Path */}
+
                     <div>
                         <label htmlFor="new_path" className="block font-medium mb-1">Custom Path</label>
                         <input
@@ -81,7 +79,7 @@ export default function CreateNewURL() {
                         </div>
                     </div>
 
-                    {/* Title */}
+
                     <div>
                         <label htmlFor="title" className="block font-medium mb-1">Title</label>
                         <input
@@ -95,7 +93,7 @@ export default function CreateNewURL() {
                         </div>
                     </div>
 
-                    {/* Tag */}
+
                     <div>
                         <label htmlFor="tag" className="block font-medium mb-1">Tag</label>
                         <input
@@ -109,7 +107,7 @@ export default function CreateNewURL() {
                         </div>
                     </div>
 
-                    {/* Start Expiration */}
+
                     <div>
                         <label htmlFor="start_expiration" className="block font-medium mb-1">Start Expiration</label>
                         <input
@@ -123,7 +121,7 @@ export default function CreateNewURL() {
                         </div>
                     </div>
 
-                    {/* End Expiration */}
+
                     <div>
                         <label htmlFor="end_expiration" className="block font-medium mb-1">End Expiration</label>
                         <input
@@ -137,7 +135,7 @@ export default function CreateNewURL() {
                         </div>
                     </div>
 
-                    {/* Private Status */}
+
                     <div>
                         <label className="block font-medium mb-1">Private Link?</label>
                         <div className="flex items-center h-12">
@@ -153,7 +151,7 @@ export default function CreateNewURL() {
                         </div>
                     </div>
 
-                    {/* Password */}
+
                     {isPrivate && (
                         <div>
                             <label htmlFor="password" className="block font-medium mb-1">Password</label>
@@ -170,7 +168,7 @@ export default function CreateNewURL() {
                     )}
                 </div>
 
-                {/* Submit */}
+
                 <div className="mt-8">
                     <button
                         type="submit"
