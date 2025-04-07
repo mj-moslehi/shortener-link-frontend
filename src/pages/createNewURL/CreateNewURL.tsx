@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {joiResolver} from "@hookform/resolvers/joi";
 import {useForm, FieldValues} from "react-hook-form";
-import linkSchema from "./LinkValidator.tsx";
+import linkSchema from "./LinkValidator.ts";
 import api from "../../services/domain.ts";
 
 export default function CreateNewURL() {
