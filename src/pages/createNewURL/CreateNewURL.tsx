@@ -1,25 +1,29 @@
-import {useState} from "react";
-import {joiResolver} from "@hookform/resolvers/joi";
-import {useForm, FieldValues} from "react-hook-form";
+import { useState } from "react";
+import { joiResolver } from "@hookform/resolvers/joi";
+import { useForm, FieldValues } from "react-hook-form";
 import linkSchema from "./LinkValidator.ts";
 import api from "../../services/domain.ts";
+import { AxiosError } from "axios";
 
 export default function CreateNewURL() {
     const [error, setError] = useState('');
     const {
         register,
         handleSubmit,
-        formState: {errors, isValid},
+        formState: { errors, isValid },
         watch,
-    } = useForm({resolver: joiResolver(linkSchema), mode: "onChange"});
+    } = useForm({ resolver: joiResolver(linkSchema), mode: "onChange" });
 
     const onSubmit = async (data: FieldValues) => {
         setError("");
         try {
-            await api.post("/link/create", data);
+            await api.post("/create", data);
         } catch (err: unknown) {
-            if (err instanceof Error && (err as any).response?.data?.message) {
-                setError((err as any).response.data.message);
+            if (err instanceof AxiosError) {
+                const backendMessage = err.response?.data?.message || err.response?.data || "Something went wrong";
+                setError(backendMessage);
+            } else {
+                setError("An unknown error occurred.");
             }
         }
     };
@@ -47,9 +51,9 @@ export default function CreateNewURL() {
                             className="w-full border border-gray-300 rounded-lg px-3 h-12"
                             type="url"
                         />
-                        <div className="min-h-[1.25rem] mt-1 text-sm text-red-600 ">
-                            {errors.raw_link?.message ?? '\u00A0'}
-                        </div>
+                        {errors.raw_link?.message && (
+                            <p className="text-red-600 text-sm mt-1">{String(errors.raw_link.message)}</p>
+                        )}
                     </div>
 
                     <div>
@@ -60,11 +64,10 @@ export default function CreateNewURL() {
                             className="w-full border border-gray-300 rounded-lg px-3 h-12"
                             type="text"
                         />
-                        <div className="min-h-[1.25rem] mt-1 text-sm text-red-600">
-                            {errors.new_domain?.message ?? '\u00A0'}
-                        </div>
+                        {errors.new_domain?.message && (
+                            <p className="text-red-600 text-sm mt-1">{String(errors.new_domain.message)}</p>
+                        )}
                     </div>
-
 
                     <div>
                         <label htmlFor="new_path" className="block font-medium mb-1">Custom Path</label>
@@ -74,11 +77,10 @@ export default function CreateNewURL() {
                             className="w-full border border-gray-300 rounded-lg px-3 h-12"
                             type="text"
                         />
-                        <div className="min-h-[1.25rem] mt-1 text-sm text-red-600">
-                            {errors.new_path?.message ?? '\u00A0'}
-                        </div>
+                        {errors.new_path?.message && (
+                            <p className="text-red-600 text-sm mt-1">{String(errors.new_path.message)}</p>
+                        )}
                     </div>
-
 
                     <div>
                         <label htmlFor="title" className="block font-medium mb-1">Title</label>
@@ -88,11 +90,10 @@ export default function CreateNewURL() {
                             className="w-full border border-gray-300 rounded-lg px-3 h-12"
                             type="text"
                         />
-                        <div className="min-h-[1.25rem] mt-1 text-sm text-red-600">
-                            {errors.title?.message ?? '\u00A0'}
-                        </div>
+                        {errors.title?.message && (
+                            <p className="text-red-600 text-sm mt-1">{String(errors.title.message)}</p>
+                        )}
                     </div>
-
 
                     <div>
                         <label htmlFor="tag" className="block font-medium mb-1">Tag</label>
@@ -102,11 +103,10 @@ export default function CreateNewURL() {
                             className="w-full border border-gray-300 rounded-lg px-3 h-12"
                             type="text"
                         />
-                        <div className="min-h-[1.25rem] mt-1 text-sm text-red-600">
-                            {errors.tag?.message ?? '\u00A0'}
-                        </div>
+                        {errors.tag?.message && (
+                            <p className="text-red-600 text-sm mt-1">{String(errors.tag.message)}</p>
+                        )}
                     </div>
-
 
                     <div>
                         <label htmlFor="start_expiration" className="block font-medium mb-1">Start Expiration</label>
@@ -116,11 +116,10 @@ export default function CreateNewURL() {
                             className="w-full border border-gray-300 rounded-lg px-3 h-12"
                             type="datetime-local"
                         />
-                        <div className="min-h-[1.25rem] mt-1 text-sm text-red-600">
-                            {errors.start_expiration?.message ?? '\u00A0'}
-                        </div>
+                        {errors.start_expiration?.message && (
+                            <p className="text-red-600 text-sm mt-1">{String(errors.start_expiration.message)}</p>
+                        )}
                     </div>
-
 
                     <div>
                         <label htmlFor="end_expiration" className="block font-medium mb-1">End Expiration</label>
@@ -130,11 +129,10 @@ export default function CreateNewURL() {
                             className="w-full border border-gray-300 rounded-lg px-3 h-12"
                             type="datetime-local"
                         />
-                        <div className="min-h-[1.25rem] mt-1 text-sm text-red-600">
-                            {errors.end_expiration?.message ?? '\u00A0'}
-                        </div>
+                        {errors.end_expiration?.message && (
+                            <p className="text-red-600 text-sm mt-1">{String(errors.end_expiration.message)}</p>
+                        )}
                     </div>
-
 
                     <div>
                         <label className="block font-medium mb-1">Private Link?</label>
@@ -146,11 +144,10 @@ export default function CreateNewURL() {
                             />
                             <span className="ml-2">Enable password protection</span>
                         </div>
-                        <div className="min-h-[1.25rem] mt-1 text-sm text-red-600">
-                            {errors.private_status?.message ?? '\u00A0'}
-                        </div>
+                        {errors.private_status?.message && (
+                            <p className="text-red-600 text-sm mt-1">{String(errors.private_status.message)}</p>
+                        )}
                     </div>
-
 
                     {isPrivate && (
                         <div>
@@ -161,13 +158,12 @@ export default function CreateNewURL() {
                                 className="w-full border border-gray-300 rounded-lg px-3 h-12"
                                 type="password"
                             />
-                            <div className="min-h-[1.25rem] mt-1 text-sm text-red-600">
-                                {errors.password?.message ?? '\u00A0'}
-                            </div>
+                            {errors.password?.message && (
+                                <p className="text-red-600 text-sm mt-1">{String(errors.password.message)}</p>
+                            )}
                         </div>
                     )}
                 </div>
-
 
                 <div className="mt-8">
                     <button
