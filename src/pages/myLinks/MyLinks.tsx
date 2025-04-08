@@ -1,4 +1,4 @@
-import LinkView from "../../components/LinkView.tsx";
+import LinkView from "../../components/LinkView/LinkView.tsx";
 import api from '../../services/domain.ts';
 import {useEffect, useState} from "react";
 import {AxiosError} from "axios";
