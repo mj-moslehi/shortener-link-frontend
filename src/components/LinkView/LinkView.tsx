@@ -1,5 +1,6 @@
 import {Link} from '../../pages/myLinks/MyLinks.tsx'
 import {useLinkStore} from "./store/useLinkStore.ts";
+import api from '../../services/domain.ts';
 
 interface LinkViewProps {
     link: Link;
@@ -7,6 +8,10 @@ interface LinkViewProps {
 
 export default function LinkView({link}: LinkViewProps) {
     const setSelectedLink = useLinkStore((state) => state.setSelectedLink);
+    const handleDelete = async () => {
+        await api.patch(`/delete/${link.id}`);
+        alert('Link deleted successfully');
+    }
     return (
         <div
             className='p-3 my-3 rounded-lg shadow-md bg-gray-200 max-w-lg min-w-sm overflow-x-hidden hover:overflow-x-visible'>
@@ -25,6 +30,7 @@ export default function LinkView({link}: LinkViewProps) {
                 </a>
 
                 <button
+                    onClick={handleDelete}
                     className='flex justify-center items-center bg-red-600 text-black p-2 rounded-md hover:cursor-pointer hover:shadow-md font-medium hover:opacity-65'>Delete
                 </button>
 
