@@ -46,8 +46,8 @@ export default function MyLinks() {
     }, []);
 
     return (
-        <div className='mt-8'>
-            <h1 className='text-4xl font-medium text-gray-500 mb-8'>Your Links List:</h1>
+        <div className='mt-8 flex-col flex'>
+            <h1 className='font-medium text-gray-500 mb-8 md:text-3xl sm:text-2xl flex justify-center '>Your Links List:</h1>
 
             {error && (
                 <p className="text-red-600 text-center mb-4">{error}</p>

@@ -26,32 +26,35 @@ export default function NavBar() {
                         </a>
                     </li>
                 </ul>
-                <div className='sm:hidden hover:opacity-65' onClick={() => setIsOpen(!isOpen)}>
-                    <HamburgerMenu/>
+                <div
+                    className="sm:hidden hover:opacity-65 cursor-pointer"
+                    onClick={() => setIsOpen(prev => !prev)}
+                >
+                    <HamburgerMenu />
                 </div>
             </nav>
-
-            {isOpen &&
-                <div className='flex justify-center mt-2 p-4 '>
-                    <ul className="felx flex-col   space-y-2 ">
-                        <li className='border-1 border-gray-500 bg-gray-200 rounded-2xl w-[100px] justify-center flex'>
-                            <a href='/home' className="p-2 text-gray-600 text text-sm ">
-                                Home
-                            </a>
-                        </li>
-                        <li className='border-1 border-gray-500  text-sm bg-gray-200 rounded-2xl w-[100px] justify-center flex'>
-                            <a
-                                href='/'
-                                className="p-2 text-gray-600 "
-                                onClick={logout}
-                            >
-                                Logout
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            }
-
+            <div
+                className={`sm:hidden transition-all duration-500 ease-in-out overflow-hidden ${
+                    isOpen ? 'max-h-40 opacity-100 mt-2' : 'max-h-0 opacity-0'
+                }`}
+            >
+                <ul className="flex flex-col items-end space-y-2 p-4 ">
+                    <li className="border border-gray-500 bg-gray-200 rounded-2xl w-[100px] flex justify-center">
+                        <a href='/home' className="p-2 text-gray-600 text-sm">
+                            Home
+                        </a>
+                    </li>
+                    <li className="border border-gray-500 bg-gray-200 rounded-2xl w-[100px] flex justify-center">
+                        <a
+                            href='/'
+                            className="p-2 text-gray-600 text-sm"
+                            onClick={logout}
+                        >
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </header>
     );
 }
