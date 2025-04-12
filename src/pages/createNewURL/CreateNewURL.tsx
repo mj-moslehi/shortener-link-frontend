@@ -31,18 +31,18 @@ export default function CreateNewURL() {
     const isPrivate = watch("private_status");
 
     return (
-        <div className="flex items-center min-h-screen">
+        <div className="flex items-center min-h-screen my-8">
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="w-3xl bg-white shadow-lg rounded-2xl p-6 sm:p-8"
+                className="w-sm md:w-lg lg:w-2xl bg-white shadow-lg rounded-2xl p-6 sm:p-8"
             >
-                <div className="text-2xl sm:text-3xl font-bold text-center mb-8">
+                <div className="text-xl sm:text-3xl font-bold text-center mb-8">
                     Create Short Link
                 </div>
 
                 {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
                     <div>
                         <label htmlFor="raw_link" className="block font-medium mb-1">Raw Link</label>
                         <input

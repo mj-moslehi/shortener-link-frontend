@@ -50,10 +50,10 @@ export default function Clicked() {
 
     return (
         <div className='flex flex-col items-center justify-center w-full '>
-            <h1 className='text-3xl font-bold text-gray-500 my-8'>Chosen Link :</h1>
+            <h1 className='text-lg font-bold text-gray-500 my-8 md:text-2xl '>Chosen Link :</h1>
             <LinkFields />
 
-            <h1 className='text-3xl font-bold text-gray-500 my-8'>Clicks Details :</h1>
+            <h1 className=' font-bold text-gray-500 my-8 md:text-2xl text-lg'>Clicks Details :</h1>
 
             {error && (
                 <div className="text-red-600 text-lg font-semibold my-4">
@@ -62,7 +62,8 @@ export default function Clicked() {
             )}
 
             {clicks.map((click, index) => (
-                <ClickDetail key={index} click={click} />
+
+                <ClickDetail key={index} click={click}  />
             ))}
         </div>
     );

@@ -1,6 +1,5 @@
-import joi, { CustomHelpers } from 'joi';
+import joi, {CustomHelpers} from 'joi';
 
-// Helper to reject strings with only spaces
 const noOnlySpaces = (value: string, helpers: CustomHelpers) => {
     if (value.trim().length === 0) {
         return helpers.error('string.empty');
@@ -17,39 +16,44 @@ const linkSchema = joi.object({
     }),
 
     new_domain: joi.string()
+        .allow("")
         .pattern(/^[^/\s].*[^/\s]$/)
         .optional()
         .messages({
             "string.pattern.base": "Domain must not start or end with / and must not contain spaces"
         }),
 
-    new_path: joi.string()
-        .pattern(/^[^/\s].*[^/\s]$/)
+    new_path: joi
+        .string()
+        .allow("")
         .optional()
+        .pattern(/^[^/\s].*[^/\s]$/)
         .messages({
             "string.pattern.base": "Path must not start or end with / and must not contain spaces"
         }),
 
     tag: joi.string()
+        .allow("")
+        .optional()
         .pattern(validTagTitlePattern)
         .custom(noOnlySpaces, 'No only spaces validation')
-        .optional()
         .messages({
             "string.pattern.base": "Tag can only contain letters, numbers, commas, periods, and semicolons",
             "string.empty": "Tag must not be only spaces"
         }),
 
-    start_expiration: joi.date().iso().greater('now').optional().messages({
+    start_expiration: joi.date().iso().greater('now').allow("").optional().messages({
         "date.iso": "start expiration must be a valid date",
         "date.greater": "start expiration must be greater than now"
     }),
 
-    end_expiration: joi.date().iso().greater(joi.ref('start_expiration')).optional().messages({
+    end_expiration: joi.date().iso().greater(joi.ref('start_expiration')).allow("").optional().messages({
         "date.iso": "end expiration must be a valid date",
         "date.greater": "end expiration must be greater than start expiration"
     }),
 
     title: joi.string()
+        .allow("")
         .pattern(validTagTitlePattern)
         .custom(noOnlySpaces, 'No only spaces validation')
         .optional()
