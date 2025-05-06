@@ -1,5 +1,5 @@
 import api from '../services/domain.ts'
-import HamburgerMenu from "../assets/hamburgerMenu.tsx";
+import HamburgerMenu from "../assets/tsx/hamburgerMenu.tsx";
 import {useState} from "react";
 
 export default function NavBar() {

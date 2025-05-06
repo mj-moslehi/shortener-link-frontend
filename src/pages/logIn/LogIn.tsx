@@ -4,6 +4,7 @@ import Schema from "./LogInValidation.ts";
 import {useState} from "react";
 import api from "../../services/domain.ts"
 import {Link, useNavigate} from "react-router";
+import loginImg from "../../assets/img/loginImg.png"
 
 export default function LogIn() {
 
@@ -29,13 +30,21 @@ export default function LogIn() {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen p-7 bg-gray-100  ">
+        <div className="flex flex-row justify-between items-center h-screen text-white bg-[#0E1C24]">
+
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="w-full min-h-[600px] max-w-lg bg-white shadow-lg rounded-2xl p-6 sm:p-8 flex flex-col justify-center"
+                className="w-1/2 max-w-lg mx-auto shadow-lg h-full flex flex-col justify-center"
             >
-                <div className="text-2xl sm:text-3xl font-bold text-center mb-10">
-                    Log in :)
+                <div className="text-2xl sm:text-3xl  text-left mb-4">
+                    <div className='font-bold'>
+                        Log in :)
+                    </div>
+
+                    <div className='text-sm mt-6'>
+                        Today is a new day. It's your day. You shape it.
+                        Sign in to start managing your projects.
+                    </div>
                 </div>
 
                 {error && <p className="text-red-600 text-center mb-4">{error}</p>}
@@ -96,6 +105,11 @@ export default function LogIn() {
                     </Link>
                 </p>
             </form>
+
+            <div className='w-1/2 p-[10px] box-border h-full'>
+                <img src={loginImg} alt="loginImage" className=" w-full h-full object-cover rounded-xl"/>
+            </div>
+
         </div>
     );
 }

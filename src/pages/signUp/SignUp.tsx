@@ -25,7 +25,7 @@ export default function SignUp() {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen p-7 bg-gray-100  ">
+        <div className="flex items-center justify-center min-h-screen p-7 bg-[#0E1C24]">
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="w-full min-h-[600px] max-w-lg bg-white shadow-lg rounded-2xl p-6 sm:p-8 flex flex-col justify-center"
